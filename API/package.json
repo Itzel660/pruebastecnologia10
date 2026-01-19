@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "node holamundo.js",
+    "dev": "nodemon holamundo.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.1.4",
+    "nodemon": "^3.1.11"
+  }
+}
