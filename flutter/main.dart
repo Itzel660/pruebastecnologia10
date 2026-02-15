@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,16 +10,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            'Hola Mundo',
-            style: TextStyle(fontSize: 40),
-          ),
+      title: 'KidoTag',
+      theme: ThemeData(
+        primaryColor: const Color(0xFF1B0B3A),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF1B0B3A),
+          foregroundColor: Colors.white,
+        ),
+        drawerTheme: const DrawerThemeData(
+          backgroundColor: Colors.white,
         ),
       ),
+      home: LoginPage(),
     );
   }
 }
