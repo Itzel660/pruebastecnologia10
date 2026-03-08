@@ -66,12 +66,20 @@ class _SubirJustificanteState extends State<SubirJustificante> {
   // Simulación de enviar justificante
   Future<void> enviarJustificante() async {
 
-    if (fechaSeleccionada == null || imagen == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Seleccione fecha e imagen"),
-        ),
-      );
+    final motivo = comentarioController.text.trim();
+
+    if (fechaSeleccionada == null) {
+      mostrarError("Debe seleccionar la fecha");
+      return;
+    }
+
+    if (motivo.isEmpty) {
+      mostrarError("Debe escribir el motivo de la falta");
+      return;
+    }
+
+    if (imagen == null) {
+      mostrarError("Debe adjuntar una imagen del justificante");
       return;
     }
 
@@ -79,7 +87,7 @@ class _SubirJustificanteState extends State<SubirJustificante> {
       isLoading = true;
     });
 
-    await Future.delayed(const Duration(seconds: 2));
+
 
     setState(() {
       isLoading = false;
@@ -88,10 +96,20 @@ class _SubirJustificanteState extends State<SubirJustificante> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Justificante enviado correctamente"),
+        backgroundColor: Colors.green,
       ),
     );
 
     Navigator.pop(context);
+  }
+  void mostrarError(String mensaje) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(mensaje),
+        backgroundColor: Colors.grey,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   @override
